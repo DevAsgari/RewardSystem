@@ -1,0 +1,101 @@
+﻿@model AvanceretProgrammeringEksamen.Models.RewardViewModel
+
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        table-layout: fixed;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        word-wrap: break-word;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+    .message {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        border-radius: 4px;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Reward Calculation</h2>
+    <p>Selected strategy: <strong>@Model.SelectedStrategy</strong></p>
+
+    @if (Model.Rewards != null && Model.Rewards.Any())
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Insurance</th>
+                    <th>Date</th>
+                    <th>Sales Price</th>
+                    <th>Customer Satisfaction</th>
+                    <th>Reward</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Rewards)
+                {
+                    <tr>
+                        <td>@item.Sale.SaleType</td>
+                        <td>@item.Sale.SaleDate.ToString("yyyy-MM-dd")</td>
+                        <td>@item.Sale.Price</td>
+                        <td>@item.Sale.CustomerSatisfaction</td>
+                        <td>@item.Reward</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="text-align: right; font-weight: bold;">Total Reward</td>
+                    <td>
+                        @Model.Rewards.Sum(r => r.Reward)
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    }
+    else
+    {
+        <div class="message">No sales to display.</div>
+    }
+
+    <a href="@Url.Action("RegisterSale", "Sales")" class="btn">Back to Registration</a>
+</div>

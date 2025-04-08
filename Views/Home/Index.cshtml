@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Reward System for Insurance Sales";
+}
+
+<style>
+    .container-new {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 50px 20px;
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        color: #007bff;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 15px 30px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1em;
+        text-decoration: none;
+        margin-top: 20px;
+    }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+    .padding {
+        padding: 50px;
+    }
+</style>
+
+<div class="padding">
+    <div class="container-new">
+        <h1>Reward System for Insurance Sales</h1>
+        <a href="@Url.Action("RegisterSale", "Sales")" class="btn">Register Sale</a>
+    </div>
+</div>

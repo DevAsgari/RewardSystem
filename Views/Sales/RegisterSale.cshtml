@@ -1,0 +1,130 @@
+﻿@model AvanceretProgrammeringEksamen.Models.Sale
+
+@{
+    ViewData["Title"] = "Sale Management";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" style="text-align: center; margin-top: 10px;">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-warning" style="text-align: center; margin-top: 10px;">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 20px auto; /* Tilføjer afstand mellem containerne */
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+    .btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+    h1 {
+        font-size: 2.5em;
+        color: #007bff;
+        text-align: center;
+    }
+
+    .padding {
+        padding: 50px;
+    }
+</style>
+<div class="padding">
+    <h1>Register Sale</h1>
+    <div class="form-container">
+        <form asp-action="Register">
+            <div class="form-group">
+                <label asp-for="SaleType">Sale Type</label>
+                <select asp-for="SaleType">
+                    <option value="Life">Life Insurance</option>
+                    <option value="Health">Health Insurance</option>
+                    <option value="Car">Car Insurance</option>
+                </select>
+                <span asp-validation-for="SaleType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price">Price</label>
+                <input asp-for="Price" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CustomerSatisfaction">Customer Satisfaction (1-5)</label>
+                <select asp-for="CustomerSatisfaction">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <span asp-validation-for="CustomerSatisfaction" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SaleDate">Sale Date</label>
+                <input asp-for="SaleDate" type="date" />
+                <span asp-validation-for="SaleDate" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn" style="margin-top: 20px;">Register Sale</button>
+        </form>
+    </div>
+
+    <div class="padding">
+        <h1>Calculate Reward</h1>
+        <div class="form-container">
+            <form asp-action="Reward" class="strategy-form">
+                <div class="form-group">
+                    <label for="strategyType">Select Reward Strategy:</label>
+                    <select id="strategyType" name="strategyType">
+                        <option value="CustomerSatisfaction">Customer Satisfaction</option>
+                        <option value="SalesPrice">Sales Price</option>
+                        <option value="Combined">Combined Price And Satisfaction</option>
+                        <option value="Adjusted">Adjusted</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn" style="margin-top: 20px;">Beregn</button>
+            </form>
+        </div>
+    </div>
+</div>
